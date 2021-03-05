@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %} 
+{% block content_page %}
+    <h1>Reservation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Coderes</th>
+                <th>Dateres</th>
+                <th>Nbjours</th>
+                <th>Prixres</th>
+                <th>Enable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.coderes }}</td>
+                <td>{{ reservation.dateres ? reservation.dateres|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.nbjours }}</td>
+                <td>{{ reservation.prixres }}</td>
+                <td>{{ reservation.enable ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservation_new') }}">Create new</a>
+{% endblock content_page %}

@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ForumController!{% endblock %}
+
+{% block body %}
+    <section class="w3l-about-breadcrumb text-left">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-sm-5 py-4">
+            <div class="container py-2">
+                <h2 class="title">Welcome to our Blogs Forum</h2>
+                <ul class="breadcrumbs-custom-path mt-2">
+                    <li><a href="#url">Home</a></li>
+                    <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Forum </li>
+
+                    <form method="post" action="{{ path('recherche') }}">
+                        <input type="text" name="search" placeholder="Rechercher" required="">
+                        <button type="submit">Go</button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="w3l-cta4 py-5">
+        <div class="container py-lg-5">
+            <div class="ab-section text-center">
+                <h6 class="sub-title">Our Forum</h6>
+                <h3 class="hny-title">Travel to make memories all around the world.</h3>
+                <a href="ajoutF" class="btn btn-style btn-primary">Ajouter votre blog</a>
+
+            </div>
+
+        </div>
+    </section>
+<section class="w3l-grids-3 py-5">
+    <div class="container py-md-5">
+        <div class="title-content text-left mb-lg-5 mb-4">
+            <h6 class="sub-title">Visit</h6>
+            <h3 class="hny-title">Popular Destinations</h3>
+        </div>
+        <div class="row bottom-ab-grids">
+            <!--/row-grids-->{% for c in forum %}
+            <div class="col-lg-6 subject-card mt-lg-0 mt-4">
+                <div class="subject-card-header p-4">
+                    <a href="#" class="card_title p-lg-4d-block">
+                        <div class="row align-items-center">
+                            <div class="col-sm-5 subject-img">
+                                <img src="{{ c.img }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-sm-7 subject-content mt-sm-0 mt-4">
+                                <h4>{{ c.destination }}</h4>
+                                <p>{{ c.sujet }}</p>
+                                <div class="dst-btm">
+                                    <h6 class=""> Written by {{ c.user.username }} </h6>
+                                    <span>in {{ c.getDate()| date('d-m-Y') }}</span>
+                                </div>
+                                <a href="{{ path('detail',{'id':c.id}) }}" class="btn btn-style btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> {% endfor %}
+            <!--//row-grids-->
+        </div>
+    </div>
+</section>
+    <section class="w3l-statshny py-5" id="stats">
+        <div class="container py-lg-5 py-md-4">
+            <div class="w3-stats-inner-info">
+                <div class="row">
+                    <div class="col-lg-4 col-6 stats_info counter_grid text-left">
+                        <span class="fa fa-smile-o"></span>
+                        <p class="counter">1730</p>
+                        <h4>Happy Customers</h4>
+                    </div>
+                    <div class="col-lg-4 col-6 stats_info counter_grid1 text-left">
+                        <span class="fa fa-users"></span>
+                        <p class="counter">730</p>
+                        <h4>Custom Products</h4>
+                    </div>
+                    <div class="col-lg-4 col-6 stats_info counter_grid mt-lg-0 mt-5 text-left">
+                        <span class="fa fa-database"></span>
+                        <p class="counter">30</p>
+                        <h4>branches</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        {# <!--/row-grids-->{% for c in forum %}
+
+
+        <div class="col-lg-6 subject-card mt-lg-0 mt-4">
+            <div class="subject-card-header p-4">
+                <a href="#" class="card_title p-lg-4d-block">
+                    <div class="row align-items-center">
+                        <div class="col-sm-5 subject-img">
+                            <img src="{{ c.img }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-7 subject-content mt-sm-0 mt-4">
+                            <h4>{{ c.destination }}</h4>
+                            <p>{{ c.sujet }}</p>
+                            <div class="dst-btm">
+                                <h6 class=""> Written by {{ c.user.username }} </h6>
+                                <span>in {{ c.getDate()| date('d-m-Y') }}</span>
+                            </div>
+                            <a href="{{ path('aff',{'id':c.id}) }}" class="btn btn-style btn-primary">Read More</a>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>{% endfor %} #}
+
+
+{% endblock %}

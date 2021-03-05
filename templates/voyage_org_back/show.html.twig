@@ -1,0 +1,58 @@
+{% extends 'base1.html.twig' %}
+{% block title %}Hello UserController!{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">{% endblock %}
+{% block body %}
+
+    <h1>VoyageOrg</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ voyage_org.id }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ voyage_org.ref }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ voyage_org.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ voyage_org.description }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ voyage_org.dateDebut ? voyage_org.dateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{{ voyage_org.dateFin ? voyage_org.dateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ voyage_org.destination }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('voyage_org_index') }}">back to list</a>
+
+    <a href="{{ path('voyage_org_edit', {'id': voyage_org.id}) }}">edit</a>
+
+    {{ include('voyage_org_back/_delete_form.html.twig') }}
+{% endblock %}

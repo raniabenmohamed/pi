@@ -1,0 +1,78 @@
+{% extends 'base1.html.twig' %}
+{% block title %}Hello ForumController!{% endblock %}
+{% block body %}
+<section class="content-header">
+    <h1>
+        Data Tables
+        <small>advanced tables</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Hover Data Table</h3>
+
+                    <a href="{{ path('ajoutadminF') }}">Ajout</a>
+
+                        <button   type="button" class="btn btn-block btn-primary">Ajouter</button>
+
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID Forum</th>
+                            <th>WRITER</th>
+                            <th>DESTINATION</th>
+                            <th>SUJET</th>
+                            <th>DESCRIPTION</th>
+                            <th>IMAGE</th>
+                            <th>DATE</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr {% for c in forum %}>
+                            <td>{{ c.id }} </td>
+                            <td>{{ c.user.username }}
+                            </td>
+                            <td>{{ c.destination }}</td>
+                            <td> {{ c.sujet }}</td>
+                            <td>{{ c.description }}</td>
+                            <td><img src="{{ c.img }}" class="" alt=""></td>
+                            <td>{{ c.getDate()| date('d-m-Y') }}</td>
+
+                            <td><a href="{{ path('suppadmin',{'id':c.id}) }}">Delete</a></td>
+                            <td><a href="{{ path('updateFadmin',{'id':c.id}) }}">Update</a></td>
+                        </tr {% endfor %}>
+
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+{% endblock %}

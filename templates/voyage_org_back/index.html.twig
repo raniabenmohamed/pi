@@ -1,0 +1,63 @@
+{% extends 'base1.html.twig' %}
+{% block title %}Hello UserController!{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">{% endblock %}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+    <h1>VoyageOrg index</h1>
+
+    <table class="table">
+        <thead>
+            <tr "background-color: #b5b5b5">
+                <th>Id</th>
+                <th>Ref</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date_debut</th>
+                <th>Date_fin</th>
+                <th>Destination</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voyage_org in voyage_orgs %}
+            <tr>
+                <td>{{ voyage_org.id }}</td>
+                <td>{{ voyage_org.ref }}</td>
+                <td>{{ voyage_org.titre }}</td>
+                <td>{{ voyage_org.description }}</td>
+                <td>{{ voyage_org.dateDebut ? voyage_org.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ voyage_org.dateFin ? voyage_org.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ voyage_org.destination }}</td>
+                <td>
+                    <a href="{{ path('voyage_org_show', {'id': voyage_org.id}) }}">show</a>
+                    <a href="{{ path('voyage_org_edit', {'id': voyage_org.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('voyage_org_new') }}">Create new</a>
+
+{% endblock %}

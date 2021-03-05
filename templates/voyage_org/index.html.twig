@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %} 
+{% block content_page %}
+
+    <h1>VoyageOrg index</h1>
+
+    <table class="table">
+        <thead>
+            <tr "background-color: #b5b5b5">
+                <th>Id</th>
+                <th>Ref</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date_debut</th>
+                <th>Date_fin</th>
+                <th>Destination</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voyage_org in voyage_orgs %}
+            <tr>
+                <td>{{ voyage_org.id }}</td>
+                <td>{{ voyage_org.ref }}</td>
+                <td>{{ voyage_org.titre }}</td>
+                <td>{{ voyage_org.description }}</td>
+                <td>{{ voyage_org.dateDebut ? voyage_org.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ voyage_org.dateFin ? voyage_org.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ voyage_org.destination }}</td>
+                <td>
+                    <a href="{{ path('voyage_org_showb', {'id': voyage_org.id}) }}">show</a>
+                    <a href="{{ path('voyage_org_editb', {'id': voyage_org.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('voyage_org_newb') }}">Create new</a>
+
+{% endblock content_page %}

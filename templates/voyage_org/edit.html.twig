@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %} 
+{% block content_page %}
+    <h1>Edit VoyageOrg</h1>
+
+    {{ include('voyage_org/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('voyage_org_indexb') }}">back to list</a>
+
+    {{ include('voyage_org/_delete_form.html.twig') }}
+{% endblock content_page %}
